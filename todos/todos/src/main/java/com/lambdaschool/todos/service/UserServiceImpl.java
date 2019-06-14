@@ -1,8 +1,10 @@
 package com.lambdaschool.todos.service;
 
+import com.lambdaschool.todos.model.Todo;
 import com.lambdaschool.todos.model.User;
 import com.lambdaschool.todos.model.UserRoles;
 import com.lambdaschool.todos.repository.RoleRepository;
+import com.lambdaschool.todos.repository.TodoRepository;
 import com.lambdaschool.todos.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserDetailsService, UserService
 
     @Autowired
     private RoleRepository rolerepos;
+
+    @Autowired
+    private TodoRepository todorepos;
 
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
@@ -142,5 +147,24 @@ public class UserServiceImpl implements UserDetailsService, UserService
             throw new EntityNotFoundException(authentication.getName());
         }
 
+    }
+
+    @Transactional
+    @Override
+    public Todo addTodo(Todo todo, long id)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = userrepos.findByUsername(authentication.getName());
+        Todo newTodo = new Todo();
+        newTodo.setDescription(todo.getDescription());
+
+        ArrayList<Todo> newTodos = new ArrayList<>();
+        for (Todo t : currentUser.getTodos())
+        {
+            todorepos.addUserTodo(t.getTodoid(), currentUser.getUserid());
+        }
+        currentUser.setTodos(newTodos);
+
+        return todorepos.save(newTodo);
     }
 }

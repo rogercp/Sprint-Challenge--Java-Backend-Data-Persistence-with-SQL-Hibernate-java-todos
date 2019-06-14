@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface TodoRepository extends CrudRepository<Todo,Long>
 {
-//    @Transactional
-//    @Modifying
-//    @Query(value = "INSERT INTO todo (todoid,userid) values (:todoid, :userid )", nativeQuery = true)
-//    void AddUserTodo(long todoid, long userid);
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO todo (todoid,userid) values (:todoid, :userid )", nativeQuery = true)
+    void addUserTodo(long todoid, long userid);
 }

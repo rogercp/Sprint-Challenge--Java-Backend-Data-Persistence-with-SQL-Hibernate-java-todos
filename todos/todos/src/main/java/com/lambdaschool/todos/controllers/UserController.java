@@ -1,6 +1,7 @@
 package com.lambdaschool.todos.controllers;
 
 
+import com.lambdaschool.todos.model.Todo;
 import com.lambdaschool.todos.model.User;
 import com.lambdaschool.todos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class UserController
     @PostMapping(value = "/user", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<?> addNewUser(@Valid @RequestBody User newuser) throws URISyntaxException
     {
-        newuser =  userService.save(newuser);
+        newuser = userService.save(newuser);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -85,5 +86,21 @@ public class UserController
     {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "users/todo/{userid}",
+            consumes = {"application/json"},
+            produces = {"application/json"})
+    public ResponseEntity<?> addUserTodo(@PathVariable long userid,
+                                         @Valid
+                                         @RequestBody
+                                                 Todo newTodo) throws URISyntaxException
+    {
+        newTodo = userService.addTodo(newTodo, userid);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newRestaurantURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{todoid}").buildAndExpand(newTodo.getTodoid()).toUri();
+        responseHeaders.setLocation(newRestaurantURI);
+        return new ResponseEntity<>(null, responseHeaders, HttpStatus.OK);
+
     }
 }

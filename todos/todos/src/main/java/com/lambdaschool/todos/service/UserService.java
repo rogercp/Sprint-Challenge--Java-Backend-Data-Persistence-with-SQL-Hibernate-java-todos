@@ -19,4 +19,6 @@ public interface UserService
     User update(User user, long id);
 
     User findUserByName(String username);
+
+    Todo addTodo(Todo todo,long id);
 }
