@@ -52,11 +52,25 @@ public class UserServiceImpl implements UserDetailsService, UserService
         return list;
     }
 
+
+    public User findUserByName(String username)
+    {
+        User user=userrepos.findByUsername(username);
+        if(user==null)
+        {
+            throw new EntityNotFoundException("User not available");
+        }
+        return user;
+    }
+
+
+
     @Override
     public void delete(long id)
     {
         if (userrepos.findById(id).isPresent())
         {
+            userrepos.deleteTodosFromUser(id);
             userrepos.deleteById(id);
         }
         else
