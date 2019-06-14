@@ -52,7 +52,7 @@ public class Role extends Auditable
         this.name = name;
     }
 
-    public List<UserRoles> getUserRoles()
+    public List<UserRoles> userRoles()
     {
         return userRoles;
     }

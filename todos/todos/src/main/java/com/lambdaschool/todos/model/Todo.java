@@ -101,12 +101,12 @@ public class Todo
         this.completed = completed;
     }
 
-    public User getUser()
+    public User getTodouser()
     {
         return todouser;
     }
 
-    public void setUser(User user)
+    public void setTodouser(User user)
     {
         this.todouser = user;
     }
