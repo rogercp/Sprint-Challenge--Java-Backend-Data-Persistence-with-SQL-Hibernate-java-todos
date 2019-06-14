@@ -38,7 +38,7 @@ public class Todo
     public Todo(String description, String startDate, User user)
     {
         this.description = description;
-        this.startDate =  DateTimeFormat.parse(startDate);
+        this.startDate =  DateTimeFormat.Parse(startDate);
         this.user = user;
     }
 
