@@ -1,6 +1,7 @@
 package com.lambdaschool.todos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -19,11 +20,11 @@ public class Todo
     @Column(nullable = false)
     private String description;
 
-    private SimpleDateFormat startDate;
+    private DateTimeFormat startDate;
 
     private Boolean completed=false;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="userid")
     @JsonIgnoreProperties("todo")
     private User user;
@@ -37,11 +38,11 @@ public class Todo
     public Todo(String description, String startDate, User user)
     {
         this.description = description;
-        this.startDate =  SimpleDateFormat.parse(startDate);
+        this.startDate =  startDate;
         this.user = user;
     }
 
-    public Todo(String description, SimpleDateFormat startDate, Boolean completed, User user)
+    public Todo(String description, DateTimeFormat startDate, Boolean completed, User user)
     {
         this.description = description;
         this.startDate = startDate;
@@ -80,12 +81,12 @@ public class Todo
         this.description = description;
     }
 
-    public SimpleDateFormat getStartDate()
+    public DateTimeFormat getStartDate()
     {
         return startDate;
     }
 
-    public void setStartDate(SimpleDateFormat startDate)
+    public void setStartDate(DateTimeFormat startDate)
     {
         this.startDate = startDate;
     }
