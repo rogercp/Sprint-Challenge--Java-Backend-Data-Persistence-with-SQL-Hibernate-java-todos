@@ -10,6 +10,6 @@ public interface UserRepository extends CrudRepository<User, Long>
     User findByUsername(String username);
 
     @Modifying
-    @Query(value = "DELETE FROM todos WHERE userid = :userid", nativeQuery = true)
+    @Query(value = "DELETE FROM todo WHERE userid = :userid", nativeQuery = true)
     void deleteTodosFromUser(long userid);
 }

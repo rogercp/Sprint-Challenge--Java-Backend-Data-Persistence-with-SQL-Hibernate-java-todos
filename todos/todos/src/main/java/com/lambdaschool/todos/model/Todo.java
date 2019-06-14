@@ -1,6 +1,7 @@
 package com.lambdaschool.todos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.h2.security.auth.impl.StaticRolesMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Todo
     @Column(nullable = false)
     private String description;
 
-    private DateTimeFormat startDate;
+    private String startDate;
 
     private Boolean completed=false;
 
@@ -38,17 +39,17 @@ public class Todo
     public Todo(String description, String startDate, User user)
     {
         this.description = description;
-        this.startDate =  DateTimeFormat.Parse(startDate);
+        this.startDate =  startDate;
         this.user = user;
     }
 
-    public Todo(String description, DateTimeFormat startDate, Boolean completed, User user)
-    {
-        this.description = description;
-        this.startDate = startDate;
-        this.completed = completed;
-        this.user = user;
-    }
+//    public Todo(String description, DateTimeFormat startDate, Boolean completed, User user)
+//    {
+//        this.description = description;
+//        this.startDate = startDate;
+//        this.completed = completed;
+//        this.user = user;
+//    }
 
     public Todo(String description)
     {
@@ -81,12 +82,12 @@ public class Todo
         this.description = description;
     }
 
-    public DateTimeFormat getStartDate()
+    public String getStartDate()
     {
         return startDate;
     }
 
-    public void setStartDate(DateTimeFormat startDate)
+    public void setStartDate(String startDate)
     {
         this.startDate = startDate;
     }

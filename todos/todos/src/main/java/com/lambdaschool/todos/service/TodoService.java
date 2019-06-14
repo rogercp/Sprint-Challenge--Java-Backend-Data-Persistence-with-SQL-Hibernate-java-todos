@@ -9,12 +9,12 @@ public interface TodoService
 {
     Todo update(Todo todo,long id);
 
-    Todo delete(Todo todo, long id);
-
-    ArrayList<Todo> findAll();
-
-    Todo newTodo(Todo todo);
-
-    Todo findTodoById(long id);
+//    Todo delete(Todo todo, long id);
+//
+//    ArrayList<Todo> findAll();
+//
+//    Todo newTodo(Todo todo);
+//
+//    Todo findTodoById(long id);
 
 }

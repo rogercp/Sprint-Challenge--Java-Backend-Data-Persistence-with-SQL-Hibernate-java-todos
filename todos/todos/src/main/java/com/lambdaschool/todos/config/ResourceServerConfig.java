@@ -37,7 +37,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                         ).permitAll()
                 .antMatchers("/users/**").authenticated()
 
-                .antMatchers("/admin/**", "/users/**","/actuator/**").hasAnyRole("ADMIN")
+                .antMatchers("/admin/**","/actuator/**").hasAnyRole("ADMIN")
             .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 
         // http.requiresChannel().anyRequest().requiresSecure();

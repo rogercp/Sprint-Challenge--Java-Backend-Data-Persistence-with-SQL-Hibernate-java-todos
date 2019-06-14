@@ -59,17 +59,17 @@ public class UserRoles extends Auditable implements Serializable
         {
             return true;
         }
-        if (!(o instanceof UserRoles))
+        if (o == null || getClass() != o.getClass())
         {
             return false;
         }
         UserRoles userRoles = (UserRoles) o;
-        return getUser().equals(userRoles.getUser()) && getRole().equals(userRoles.getRole());
+        return user.equals(userRoles.user) && role.equals(userRoles.role);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getUser(), getRole());
+        return Objects.hash(user, role);
     }
 }
