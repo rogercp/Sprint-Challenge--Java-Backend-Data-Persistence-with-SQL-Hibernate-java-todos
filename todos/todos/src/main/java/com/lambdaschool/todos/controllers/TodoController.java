@@ -16,7 +16,7 @@ public class TodoController
     @Autowired
     private TodoService todoService;
 
-    @PutMapping(value = "/todoid/{todoid",
+    @PutMapping(value = "/todoid/{todoid}",
                 consumes={"application/json"})
     public ResponseEntity<?> updateTodo(@PathVariable Long todoid, @RequestBody Todo todo)
     {
