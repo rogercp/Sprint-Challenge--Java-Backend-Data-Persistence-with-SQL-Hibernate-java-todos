@@ -1,7 +1,7 @@
 package com.lambdaschool.todos.service;
 
-import com.lambdaschool.safezoos.model.Role;
-import com.lambdaschool.safezoos.repository.RoleRepository;
+import com.lambdaschool.todos.model.Role;
+import com.lambdaschool.todos.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

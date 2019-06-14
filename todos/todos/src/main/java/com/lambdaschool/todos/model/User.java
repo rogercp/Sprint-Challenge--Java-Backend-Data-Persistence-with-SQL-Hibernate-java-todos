@@ -36,7 +36,7 @@ public class User extends Auditable
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnoreProperties("users")
-    private List<Todo> todos=new ArrayList<>();
+    private List<Todo> getToDos=new ArrayList<>();
 
     public User()
     {
@@ -51,6 +51,22 @@ public class User extends Auditable
             ur.setUser(this);
         }
         this.userRoles = userRoles;
+    }
+
+    public User(String username, String password)
+    {
+        this.username = username;
+        this.password = password;
+    }
+
+    public List<Todo> getToDos()
+    {
+        return getToDos;
+    }
+
+    public void setToDos(List<Todo> getToDos)
+    {
+        this.getToDos = getToDos;
     }
 
     public long getUserid()
