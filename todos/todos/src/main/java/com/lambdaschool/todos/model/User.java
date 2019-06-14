@@ -32,11 +32,11 @@ public class User extends Auditable
     @JsonIgnoreProperties("user")
     private List<UserRoles> userRoles = new ArrayList<>();
 
-    @OneToMany(mappedBy ="user",
+    @OneToMany(mappedBy ="todouser",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JsonIgnoreProperties("users")
-    private List<Todo> getToDos=new ArrayList<>();
+    @JsonIgnoreProperties("todouser")
+    private List<Todo> todos=new ArrayList<>();
 
     public User()
     {
@@ -59,14 +59,12 @@ public class User extends Auditable
         this.password = password;
     }
 
-    public List<Todo> getToDos()
-    {
-        return getToDos;
+    public List<Todo> getTodos() {
+        return todos;
     }
 
-    public void setToDos(List<Todo> getToDos)
-    {
-        this.getToDos = getToDos;
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
     }
 
     public long getUserid()

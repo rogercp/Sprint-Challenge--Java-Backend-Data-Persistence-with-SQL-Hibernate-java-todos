@@ -18,7 +18,7 @@ public class TodoServiceImpl implements TodoService
     @Override
     public Todo update(Todo todo, long id)
     {
-        Todo currentTodo = todorepos.findById(id).orElse(() -> new EntityNotFoundException(Long.toString(id)));
+        Todo currentTodo = todorepos.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
 
         if (todo.getDescription()!=null) ;
         {

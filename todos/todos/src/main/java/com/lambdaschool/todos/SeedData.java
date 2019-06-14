@@ -9,8 +9,8 @@ import com.lambdaschool.todos.repository.TodoRepository;
 import com.lambdaschool.todos.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 @Transactional
@@ -36,7 +36,7 @@ public class SeedData implements CommandLineRunner
 
         ArrayList<UserRoles> admins = new ArrayList<>();
         admins.add(new UserRoles(new User(), r1));
-        admins.add(new UserRoles(new User(), r2));
+//        admins.add(new UserRoles(new User(), r2));
 
         ArrayList<UserRoles> users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
@@ -46,20 +46,28 @@ public class SeedData implements CommandLineRunner
 
         User u1 = new User("barnbarn", "ILuvM4th!", users);
         User u2 = new User("admin", "password", admins);
-        User u3 = new User("Bob", "password", users);
-        User u4 = new User("Jane", "password", users);
+//        User u3 = new User("Bob", "password", users);
+//        User u4 = new User("Jane", "password", users);
 
         // the date and time string should get coverted to a datetime Java data type. This is done in the constructor!
-        u4.getToDos().add(new Todo("Finish java-orders-swagger", "2019-01-13 04:04:04", u4));
-        u4.getToDos().add(new Todo("Feed the turtles", "2019-03-01 04:04:04", u4));
-        u4.getToDos().add(new Todo("Complete the sprint challenge", "2019-02-22 04:04:04", u4));
+        u2.getTodos().add(new Todo("Finish java-orders-swagger", "2019-01-13 04:04:04", u2));
+        u2.getTodos().add(new Todo("Feed the turtles", "2019-03-01 04:04:04", u2));
+        u2.getTodos().add(new Todo("Complete the sprint challenge", "2019-02-22 04:04:04", u2));
 
-        u3.getToDos().add(new Todo("Walk the dogs", "2019-01-17 04:04:04", u3));
-        u3.getToDos().add(new Todo("provide feedback to my instructor", "2019-02-13 04:04:04", u3));
+        u1.getTodos().add(new Todo("Walk the dogs", "2019-01-17 04:04:04", u1));
+        u1.getTodos().add(new Todo("provide feedback to my instructor", "2019-02-13 04:04:04", u1));
+
+//        u4.getTodos().add(new Todo("Finish java-orders-swagger", u4));
+//        u4.getTodos().add(new Todo("Feed the turtles", u4));
+//        u4.getTodos().add(new Todo("Complete the sprint challenge", u4));
+//
+//        u3.getTodos().add(new Todo("Walk the dogs", u3));
+//        u3.getTodos().add(new Todo("provide feedback to my instructor", u3));
 
         userrepos.save(u1);
         userrepos.save(u2);
-        userrepos.save(u3);
-        userrepos.save(u4);
+
+//        userrepos.save(u3);
+//        userrepos.save(u4);
     }
 }

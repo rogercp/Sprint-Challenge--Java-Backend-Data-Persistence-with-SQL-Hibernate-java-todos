@@ -25,22 +25,21 @@ public class Todo
 
     private Boolean completed=false;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="userid")
     @JsonIgnoreProperties("todo")
-    private User user;
+    private User todouser;
 
     public Todo()
     {
     }
 
 
-
     public Todo(String description, String startDate, User user)
     {
         this.description = description;
         this.startDate =  startDate;
-        this.user = user;
+        this.todouser = user;
     }
 
 //    public Todo(String description, DateTimeFormat startDate, Boolean completed, User user)
@@ -92,7 +91,7 @@ public class Todo
         this.startDate = startDate;
     }
 
-    public Boolean getCompleted()
+    public Boolean isCompleted()
     {
         return completed;
     }
@@ -104,12 +103,12 @@ public class Todo
 
     public User getUser()
     {
-        return user;
+        return todouser;
     }
 
     public void setUser(User user)
     {
-        this.user = user;
+        this.todouser = user;
     }
 
     @Override
@@ -120,7 +119,7 @@ public class Todo
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", completed=" + completed +
-                ", user=" + user +
+                ", user=" + todouser +
                 '}';
     }
 }
